@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Asset } from "@/types";
-import { formatPrice, formatChange, cn } from "@/lib/utils";
+import { formatChange, cn } from "@/lib/utils";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown, TrendingUp, TrendingDown, Star } from "lucide-react";
@@ -41,8 +41,11 @@ export function AssetTable({ assets, favorites, onToggleFavorite }: AssetTablePr
   const sortedAssets = [...assets].sort((a, b) => {
     if (!sortConfig) return 0;
     const { key, direction } = sortConfig;
-    if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
-    if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+    const aValue = a[key];
+    const bValue = b[key];
+    if (aValue == null || bValue == null) return 0;
+    if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+    if (aValue > bValue) return direction === 'asc' ? 1 : -1;
     return 0;
   });
 
