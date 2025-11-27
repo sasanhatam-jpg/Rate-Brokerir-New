@@ -120,12 +120,14 @@ export function Widgets({ assets }: { assets: Asset[] }) {
               پیش‌نمایش زنده
             </span>
           </div>
-          <div className="flex-1 p-8 overflow-y-auto flex items-center justify-center min-h-[500px]">
-            <div className="text-center text-gray-500">
-              <p>ویجت در اینجا نمایش داده می‌شود (شبیه‌سازی)</p>
-              <p className="text-xs mt-2">نوع: {widgetType}</p>
-              <p className="text-xs">تعداد ارز: {selectedAssets.length}</p>
-            </div>
+          <div className="flex-1 p-8 overflow-y-auto min-h-[500px] bg-white">
+            <div
+              className="nerkh-widget"
+              data-type={widgetType}
+              data-assets={selectedAssets.join(",")}
+              data-theme="light"
+            />
+            <script src="/widget-loader.js" async></script>
           </div>
         </div>
       </div>

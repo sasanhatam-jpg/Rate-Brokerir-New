@@ -30,7 +30,7 @@
 
     // 3. Read configuration from data attributes
     const type = container.getAttribute('data-type') || 'grid';
-    const assets = container.getAttribute('data-assets') || 'usd,gold_18k,btc';
+    const assets = container.getAttribute('data-assets') || 'usd,ir_gold_18k,btc';
     const theme = container.getAttribute('data-theme') || 'light';
 
     // 4. Create Shadow DOM for isolation
@@ -38,9 +38,9 @@
 
     // 5. Create Iframe
     const iframe = document.createElement('iframe');
-    
-    // Construct the widget URL
-    const widgetUrl = new URL(appUrl);
+
+    // Construct the widget URL - point to widget.html
+    const widgetUrl = new URL(`${appUrl}/widget.html`);
     widgetUrl.searchParams.set('mode', 'widget');
     widgetUrl.searchParams.set('type', type);
     widgetUrl.searchParams.set('assets', assets);
@@ -50,7 +50,7 @@
     iframe.style.width = '100%';
     iframe.style.border = 'none';
     iframe.style.overflow = 'hidden';
-    
+
     // Set height based on type (approximate defaults)
     if (type === 'ticker') {
       iframe.style.height = '60px';
